@@ -13,21 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
 from django.contrib import admin
-from django.urls import path
-from rest_framework import routers
-from rest_framework_swagger.views import get_swagger_view
-
-import restapi_app.serializers
-
-app_name='restapi_app'
-
-router = routers.DefaultRouter()
-router.register('users', restapi_app.serializers.UserViewSet)
+from django.urls import path, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls), # 'admin'과 같음
-    url(r'^api/doc', get_swagger_view(title='Rest API Document')),
-    url(r'^api/v1/', include((router.urls, 'restapi_app'), namespace='api')),
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls'))
 ]

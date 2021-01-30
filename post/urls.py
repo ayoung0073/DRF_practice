@@ -10,5 +10,4 @@ urlpatterns = [
     path('<int:post_id>', views.PostOneViewSet.post),
     path('comments', views.CommentViewSet.comment),
     path('comments/<int:comment_id>', views.CommentOneViewSet.comment),
-
 ]

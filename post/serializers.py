@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Comment
-from django.contrib.auth.models import User
+from my_user.models import User
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,7 +18,7 @@ class PostListSerializer(serializers.ModelSerializer):
         read_only_fields = ['title'] # 읽기전용 필드
 
     def get_writer(self, instance):
-        return User.objects.get(name=instance.writer.name).user_id
+        return User.objects.get(username=instance.writer.username).username
     
 class PostDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,4 +34,9 @@ class CommentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['writer', 'post', 'content']
+
+class CommentUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['content']
 

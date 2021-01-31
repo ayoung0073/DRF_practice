@@ -8,6 +8,6 @@ from . import views
 urlpatterns = [
     path('', views.PostViewSet.post), # 자동으로 url 생성
     path('<int:post_id>', views.PostOneViewSet.post),
-    path('comments', views.CommentViewSet.comment),
-    path('comments/<int:comment_id>', views.CommentOneViewSet.comment),
+    path('comment', views.CommentViewSet.comment),
+    path('comment/<int:comment_id>', views.CommentOneViewSet.comment),
 ]
